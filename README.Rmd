@@ -15,7 +15,7 @@ Bars are seen as a social venue, and function as a social center for a local com
 Get the location of the Bar/Launge/Pub right around the corner.. </br>
 Tippler is a RStudio-Shiny App desinged uniquely to locate the nearest bars within 2 Km from you!
 
-![](/home/jayendra/iProjects/Personal_Projects/Tippler/images/rsz_tippler_final.png)
+![](images/rsz_tippler_final.png)
 
 ***
 
@@ -28,7 +28,7 @@ Tippler is a RStudio-Shiny App desinged uniquely to locate the nearest bars with
 
 ## *Features
 
-![](/home/jayendra/iProjects/Personal_Projects/Tippler/images/yelp.png)
+![](images/yelp.png)
 Yelp, the “best way to find local businesses,” </br>
 Gain easy access to search results and local business information from over 50 million businesses in 27 countries. </br>
 
@@ -43,7 +43,7 @@ By using the Yelp API you’ll be able to:
 
 
 
-![](/home/jayendra/iProjects/Personal_Projects/Tippler/images/leaflet.png)
+![](images/leaflet.png)
 
 Leaflet is one of the most popular open-source JavaScript libraries for interactive maps.</br> It’s used by websites ranging from The New York Times and The Washington Post to GitHub and Flickr, as well as GIS specialists like OpenStreetMap, Mapbox, and CartoDB.This R package makes it easy to integrate and control Leaflet maps in R.
 
