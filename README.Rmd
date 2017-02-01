@@ -1,9 +1,5 @@
 
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 ## TIPPLER
 
 
@@ -11,7 +7,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 Finding a bar near you just got a lot easier! </br>
-Bars are seen as a social venue, and function as a social center for a local community — a place to meet friends and form networks, while fostering community spirit.</br>
+Bars are seen as a social venue, and function as a social center for a local community </br>
+— a place to meet friends and form networks, while fostering community spirit.</br>
 Get the location of the Bar/Launge/Pub right around the corner.. </br>
 Tippler is a RStudio-Shiny App desinged uniquely to locate the nearest bars within 2 Km from you!
 
@@ -29,6 +26,7 @@ Tippler is a RStudio-Shiny App desinged uniquely to locate the nearest bars with
 ## *Features
 
 ![](images/yelp.png)
+
 Yelp, the “best way to find local businesses,” </br>
 Gain easy access to search results and local business information from over 50 million businesses in 27 countries. </br>
 
