@@ -1,7 +1,4 @@
----
-title: "Tippler: Model Selection for Bar ratings"
-output: html_notebook
----
+
 #Data
 
 The dataset is available at http://www.yelp.com/dataset_challenge. 
