@@ -25,7 +25,7 @@ The distribution of ratings is not normal but rather left skewed.
 barplot(table(yelp_bars$stars),col="royalblue",ylab = "Business IDs",xlab = "Star rating",main = "Star Rating Distribution")
 
 ```
-![](images/model/stars_distros.pdf)
+![](images/model/stars_distros.png)
 
 
 The distribution of reviews across the bars in the yelp dataset
