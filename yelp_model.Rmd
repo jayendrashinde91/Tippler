@@ -14,7 +14,6 @@ We limit the dataset with possible predictors for the bar rations: WiFi, TV, Amb
 head(yelp_bars)
 ```{r}
 yelp_bars <- geco.load("/Users/jayendra/Dropbox/TDi_2017/Q3/yelp_bars.RData")
-head(head(yelp_bars))
 ```
 
 
@@ -26,6 +25,7 @@ The distribution of ratings is not normal but rather left skewed.
 barplot(table(yelp_bars$stars),col="royalblue",ylab = "Business IDs",xlab = "Star rating",main = "Star Rating Distribution")
 
 ```
+![](images/model/stars_distros.pdf)
 
 
 The distribution of reviews across the bars in the yelp dataset
