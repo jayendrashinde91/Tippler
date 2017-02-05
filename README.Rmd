@@ -10,7 +10,7 @@ Finding a bar near you just got a lot easier! </br>
 Bars are seen as a social venue, and function as a social center for a local community, </br>
 a place to meet friends and form networks, while fostering community spirit.</br>
 Get the location of the Bar/Launge/Pub right around the corner.. </br>
-Tippler is a RStudio-Shiny App desinged uniquely to locate the nearest bars within 2 Km from you!
+Tippler is a RStudio-Shiny App designed uniquely to locate the nearest bars within 2 Km from you!
 
 ![](images/rsz_tippler_final.png)
 
