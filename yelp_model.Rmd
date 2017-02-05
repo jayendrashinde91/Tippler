@@ -1,0 +1,140 @@
+---
+title: "Tippler: Model Selection for Bar ratings"
+output: html_notebook
+---
+#Data
+
+The dataset is available at http://www.yelp.com/dataset_challenge. 
+It consists of:
+4.1M reviews and 947K tips by 1M users for 144K businesses
+1.1M business attributes, e.g., hours, parking availability, ambience
+
+As our interests are associated with bars; we restrict the yelp reviews data set to places with alcohol avalibility.
+We limit the dataset with possible predictors for the bar rations: WiFi, TV, Ambience etc
+head(yelp_bars)
+```{r}
+yelp_bars <- geco.load("/Users/jayendra/Dropbox/TDi_2017/Q3/yelp_bars.RData")
+head(head(yelp_bars))
+```
+
+
+#Priliminary observations
+
+Considering Yelp ratings for the bars as “true” ratings, lets take a look at the ratings distribution across the dataset.
+The distribution of ratings is not normal but rather left skewed.
+```{r}
+barplot(table(yelp_bars$stars),col="royalblue",ylab = "Business IDs",xlab = "Star rating",main = "Star Rating Distribution")
+
+```
+
+
+The distribution of reviews across the bars in the yelp dataset
+```{r}
+
+hist(yelp_bars$review_count,breaks = 500,col="red",border = "red",xlab = "Number of reviews",ylab="Business IDs",main="Distribution between Number of Businesses and Reviews")
+
+
+```
+
+A closer look
+```{r}
+
+hist(yelp_bars.$review_count,breaks = 500,col="red",border = "red",xlab = "Number of reviews",ylab="Business IDs",main="Distribution between Number of Businesses and Reviews")
+
+
+```
+
+A closer look
+```{r}
+
+ggplot(yelp_bars, aes(as.factor(stars), review_count)) + 
+  geom_boxplot(col = "blue") +
+  scale_y_log10() +
+  xlab("Star Ratings") +
+  ylab("Number of Reviews") + 
+  theme_classic()
+
+
+```
+
+
+#Implementing the LASSO Model
+
+When fitting a linear regression, we estimate the dependent variable ŷ through a series of independant variables xj and
+
+y^ = b0 + b1x1 + ... + bkxk.
+
+The Ordinary least squares approach in linear regression is based on finding the coefficients bj that minimize the value of 
+$\sum_{}$(y−ŷ )^2, but with LASSO regression we impose an additional constraint:
+
+$\sum_{}$|bj|≤s,
+
+So the sum of the magnitude of all of the coefficients cannot exceed the value of ss:
+If we make ss small and greater than zero, then the coefficients of unimportant parameters go to zero, and are thus not really included in the model.
+
+Therefore, only the variables with a significant impact will appear in the model
+s is simply a trade-off between the smallest error and the fewest number of variables.
+
+
+
+# Implementation
+
+plot of coefficients for increasing "s"
+```{r}
+
+x <- model.matrix(stars ~ ., data = input_data)[,-1]
+y <- input_data[rownames(x),"stars"]
+set.seed(1)
+train <- sample(1:nrow(x), nrow(x)/2)
+test <- (-train)
+y.train <- y[train]
+y.test <- y[! (1:nrow(x)) %in% train]
+grid=10^seq(10,-2, length =100)
+lasso.mod <- glmnet(x[train,], y[train], alpha=1, lambda=grid)
+plot(lasso.mod)
+
+
+```
+
+
+ variation of the Mean-Squared Error (1/k$\sum_{}$(y−ŷ )^2 as a function of a changing ss which is itself proportional to the log(λ)
+```{r}
+cv.out <- cv.glmnet(x[train,], y[train], alpha=1)
+plot(cv.out, col = "blue")
+```
+
+
+We can view the selected λ and the corresponding coefficients
+
+```{r}
+cv.out$lambda.min
+
+```
+
+#RESULTS
+14 % of the ratings can be explained through the independant variables selected (Attributes).
+Note: The thick blue line indicates a theoritical perfect predictions and the black points represent individual predictions
+```{r}
+lasso <- data.frame(y.act = y.test)
+lasso$y.act <- lasso$y.act %>%
+  as.character() %>%
+  as.numeric()
+lasso$pred <- predict(lasso.mod, s=bestlam, newx=x[test,])  %>%
+  as.character() %>%
+  as.numeric()
+
+# R-squared value estimate
+1-(mean((lasso$pred -y.test)^2)/var(y.test))
+
+# Plot of actual vs. predicted values for the test data set.
+ggplot(lasso, aes(jitter(y.act), pred)) + 
+  geom_point() + 
+  geom_smooth(method = "lm", colour="#000099") + 
+  geom_abline(intercept = 0, colour="#000099", size = 2) +
+  coord_cartesian(ylim = c(1,5)) +
+  xlab("Actual Yelp Star Ratings") +
+  ylab("LASSO Predicted Star Ratings") + 
+  theme_classic()
+```
+
+
