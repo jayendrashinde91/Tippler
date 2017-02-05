@@ -47,7 +47,7 @@ hist(yelp_bars.$review_count,breaks = 500,col="red",border = "red",xlab = "Numbe
 ![](images/model/review_distros_red.png)
 
 
-A closer look
+
 ```{r}
 
 ggplot(yelp_bars, aes(as.factor(stars), review_count)) + 
@@ -59,6 +59,7 @@ ggplot(yelp_bars, aes(as.factor(stars), review_count)) +
 
 
 ```
+![](images/model/stars_reviews.png)
 
 
 #Implementing the LASSO Model
@@ -142,5 +143,5 @@ ggplot(lasso, aes(jitter(y.act), pred)) +
   theme_classic()
 ```
 
-![](images/model/stars_reviews.png)
+![](images/model/rmse.png)
 
