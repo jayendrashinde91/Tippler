@@ -35,6 +35,7 @@ hist(yelp_bars$review_count,breaks = 500,col="red",border = "red",xlab = "Number
 
 
 ```
+![](images/model/review_distros.png)
 
 A closer look
 ```{r}
@@ -43,6 +44,8 @@ hist(yelp_bars.$review_count,breaks = 500,col="red",border = "red",xlab = "Numbe
 
 
 ```
+![](images/model/review_distros_red.png)
+
 
 A closer look
 ```{r}
@@ -95,6 +98,7 @@ plot(lasso.mod)
 
 
 ```
+![](images/model/lasso_mod.png)
 
 
  variation of the Mean-Squared Error (1/k$\sum_{}$(y−ŷ )^2 as a function of a changing ss which is itself proportional to the log(λ)
@@ -102,6 +106,7 @@ plot(lasso.mod)
 cv.out <- cv.glmnet(x[train,], y[train], alpha=1)
 plot(cv.out, col = "blue")
 ```
+![](images/model/cv_out.png)
 
 
 We can view the selected λ and the corresponding coefficients
@@ -137,4 +142,5 @@ ggplot(lasso, aes(jitter(y.act), pred)) +
   theme_classic()
 ```
 
+![](images/model/stars_reviews.png)
 
